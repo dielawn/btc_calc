@@ -27,7 +27,7 @@ export function CAGR() {
                 onChange={(e) => setBeginningValue(e.target.value)}
             />
             </label>
-            <label htmlFor="yearOfCAGRInput">Number of years of CAGR:{' '} 
+            <label htmlFor="yearOfCAGRInput">Number of years:{' '} 
             <input 
                 type="number"
                 id='yearOfCAGRInput'
