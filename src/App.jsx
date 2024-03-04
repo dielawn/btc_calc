@@ -22,6 +22,7 @@ function App() {
   const [error, setError] = useState(null)//api call error
 
   const [annualDca, setAnnualDca] = useState(0)
+  const [dcaData, setDcaData] = useState([])
   
 
   const satsPerDolla = 100000000 / btcPrice
@@ -39,7 +40,7 @@ function App() {
       <p>{satsPerDolla.toFixed()} <i className="fak fa-light"></i> / $</p>
      </>
     )}
-    {btcPrice && (<DcaCalc setAnnualDca={setAnnualDca} />)}
+    {btcPrice && (<DcaCalc annualDca={annualDca} setAnnualDca={setAnnualDca} setDcaData={setDcaData} yearsUntilWd={yearsUntilWd}/>)}
     {annualDca > 0 && (
       <p>Annual DCA: ${numberWithCommas(annualDca.toFixed(2))}</p>
     )}

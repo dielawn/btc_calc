@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { numberWithCommas } from './utils'
 
-export function CAGR() {
+export function CAGR({annualDca}) {
     const [beginningValue, setBeginningValue] = useState(0)
     const [years, setYears] = useState(4)
     const [cagr, setCAGR] = useState(.262)

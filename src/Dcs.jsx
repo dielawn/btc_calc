@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 
-export function DcaCalc({setAnnualDca}) {
+export function DcaCalc({setAnnualDca, annualDca, setDcaData, yearsUntilWd}) {
 
     const [dca, setDca] = useState(300)
     const [dcaFreq, setDcaFreq] = useState('bi-weekly')
@@ -27,6 +27,16 @@ export function DcaCalc({setAnnualDca}) {
        setDcaFreq(interval)
     }
 
+    function calcData() {
+
+        // Loop through each year with dca and CAGR
+        for (let year = 1; year <= yearsUntilWd; year++) {
+              
+        }
+
+        
+    }
+
     return (
         <div>
             <label htmlFor="dcaInput">
@@ -37,10 +47,10 @@ export function DcaCalc({setAnnualDca}) {
                     onChange={(e) => handDcaChange(e)}
                 />
             </label>
-            <select name="dcaFreqSelect" id="dcaFreqSelect" onChange={(e) => handleDcaFreq(e.target.value)}>
+            <select name="dcaFreqSelect" id="dcaFreqSelect" defaultValue={'bi-weekly'} onChange={(e) => handleDcaFreq(e.target.value)}>
                 <option value="annually">Annually</option>
                 <option value="monthly">Monthly</option>
-                <option selected value="bi-weekly">Bi-weekly</option>
+                <option value="bi-weekly">Bi-weekly</option>
                 <option value="weekly">Weekly</option>
                 <option value="daily">Daily</option>
             </select>
