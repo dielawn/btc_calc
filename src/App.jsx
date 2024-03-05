@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { CAGR } from './Cagr'
 import { numberWithCommas } from './utils'
 import BTCPrice from './BtcPrice'
-import { DcaCalc } from './Dcs'
+import { DcaCalc } from './Dca'
 import { CoastFi } from './CaostFi'
 import { Fi } from './Fi'
 import './App.css'
@@ -21,6 +21,7 @@ function App() {
   const [btcPrice, setBtcPrice] = useState(null)
   const [error, setError] = useState(null)//api call error
 
+  //dca info
   const [annualDca, setAnnualDca] = useState(0)
   const [dcaData, setDcaData] = useState([])
   
@@ -29,6 +30,10 @@ function App() {
 
   const fireNum = (annualExpenses * yearsOfWd)
   const coastFINum = fireNum / ((1 + (rateOfReturn / 100)) ** yearsUntilWd)
+
+  function calcEndValue(beginningValue, cagr, years) {
+    return beginningValue * ((1 + cagr) ** years)
+}
 
   return (
     <>

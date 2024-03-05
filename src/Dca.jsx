@@ -6,6 +6,17 @@ export function DcaCalc({setAnnualDca, annualDca, setDcaData, yearsUntilWd}) {
     const [dca, setDca] = useState(300)
     const [dcaFreq, setDcaFreq] = useState('bi-weekly')
 
+
+  
+    
+    function handleData(obj) {
+        setDcaData((prevData) => [
+            ...prevData,
+            obj,
+        ])
+    }
+
+
     const dcaFreqValues = {
         'annually': 1,
         'monthly': 12,
@@ -31,10 +42,21 @@ export function DcaCalc({setAnnualDca, annualDca, setDcaData, yearsUntilWd}) {
 
         // Loop through each year with dca and CAGR
         for (let year = 1; year <= yearsUntilWd; year++) {
-              
+            let lastYearBeginningValue = 0
+
+            const dataObj = {
+                year: year,
+                beginningValue: beginningValue,   
+                annualDca: annualDca,
+                endingValue: endingValue,
+                annualGrowth: calcEndValue()
+            }
+
+            handleData(dataObj)
+            lastYearBeginningValue = dataObj.beginningValue + lastYearBeginningValue
         }
 
-        
+       
     }
 
     return (

@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { numberWithCommas } from './utils'
 
-export function CAGR({annualDca}) {
+export function CAGR({annualDca,}) {
     const [beginningValue, setBeginningValue] = useState(0)
     const [years, setYears] = useState(4)
     const [cagr, setCAGR] = useState(.262)
-
+    // const [endingValue, setEndingValue] = useState(0)
     
     function calcCAGR() {
         return ((endingValue / beginningValue) ** (1 / years)) - 1
     }
 
-    function calcEndValue() {
+    function calcEndValue(beginningValue, cagr, years) {
         return beginningValue * ((1 + cagr) ** years)
     }
-    const endingValue = calcEndValue()
+  
+    const endingValue = calcEndValue(beginningValue, cagr, years)
 
 
     return (
