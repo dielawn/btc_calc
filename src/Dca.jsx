@@ -5,15 +5,32 @@ export function DcaCalc({setAnnualDca, annualDca, setDcaData, yearsUntilWd}) {
 
     const [dca, setDca] = useState(300)
     const [dcaFreq, setDcaFreq] = useState('bi-weekly')
+    const [growthRate, setGrowthRate] = useState(5)
 
+    function calcData() {
+        let localBeginningValue = beginningValue
 
-  
+        for (let year = 1; year <= yearsUntilWd; year++) {
+            
+            const annualIncrease = localBeginningValue * (growthRate / 100)
+            const endYearValue = localBeginningValue + annualIncrease + annualDca
+          
+            const dataObj = {
+                year: year,
+                beginningValue: localBeginningValue,   
+                annualDca: annualDca,
+                annualGrowth: annualIncrease,
+                endYearValue: endYearValue,
+            }
+
+            handleData(dataObj)
+            localBeginningValue = endYearValue
+        }       
+    }
+
     
     function handleData(obj) {
-        setDcaData((prevData) => [
-            ...prevData,
-            obj,
-        ])
+        setDcaData((prevData) => [...prevData, obj])
     }
 
 
@@ -38,26 +55,6 @@ export function DcaCalc({setAnnualDca, annualDca, setDcaData, yearsUntilWd}) {
        setDcaFreq(interval)
     }
 
-    function calcData() {
-
-        // Loop through each year with dca and CAGR
-        for (let year = 1; year <= yearsUntilWd; year++) {
-            let lastYearBeginningValue = 0
-
-            const dataObj = {
-                year: year,
-                beginningValue: beginningValue,   
-                annualDca: annualDca,
-                endingValue: endingValue,
-                annualGrowth: calcEndValue()
-            }
-
-            handleData(dataObj)
-            lastYearBeginningValue = dataObj.beginningValue + lastYearBeginningValue
-        }
-
-       
-    }
 
     return (
         <div>
