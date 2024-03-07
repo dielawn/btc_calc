@@ -8,7 +8,7 @@ export function DcaCalc({setAnnualDca, annualDca, setDcaData, yearsUntilWd}) {
     const [growthRate, setGrowthRate] = useState(5)
 
     function calcData() {
-        let localBeginningValue = beginningValue
+        let localBeginningValue = 50
 
         for (let year = 1; year <= yearsUntilWd; year++) {
             
@@ -24,6 +24,7 @@ export function DcaCalc({setAnnualDca, annualDca, setDcaData, yearsUntilWd}) {
             }
 
             handleData(dataObj)
+            console.log(dataObj)
             localBeginningValue = endYearValue
         }       
     }
@@ -33,6 +34,7 @@ export function DcaCalc({setAnnualDca, annualDca, setDcaData, yearsUntilWd}) {
         setDcaData((prevData) => [...prevData, obj])
     }
 
+    calcData()
 
     const dcaFreqValues = {
         'annually': 1,

@@ -46,6 +46,11 @@ function App() {
      </>
     )}
     {btcPrice && (<DcaCalc annualDca={annualDca} setAnnualDca={setAnnualDca} setDcaData={setDcaData} yearsUntilWd={yearsUntilWd}/>)}
+    {dcaData && (dcaData.map((data) => (
+      <ul>
+        <li>{data.year}</li>
+      </ul>
+    )) )}
     {annualDca > 0 && (
       <p>Annual DCA: ${numberWithCommas(annualDca.toFixed(2))}</p>
     )}
